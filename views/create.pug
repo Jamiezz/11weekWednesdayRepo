@@ -1,0 +1,53 @@
+extends layout.pug
+
+block content
+    h2 Add Guest
+    form(method="post" action="/create")
+        input(type="hidden" name="_csrf" value=token)
+
+        label(for="firstName") First Name
+        input(type="text" id="firstName" name="firstName")
+
+        label(for="lastName") Last Name
+        input(type="text" id="lastName" name="lastName")
+
+        label(for="email") email
+        input(type="email" id="email" name="email")
+
+        label(for="password") password
+        input(type="password" id="password" name="password")
+
+        label(for="confirmed") Confirm password
+        input(type="password" id="firstName" name="confirmedPassword")
+
+        input(type="submit" value="Create User")
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+//- h2 Add Guest
+//- form(method="post" action="/guest")
+//-   label(for="fullname") Full Name:
+//-   input(type="fullname" id="fullname" name="fullname")
+//-   label(for="email") Email:
+//-   input(type="email" id="email" name="email")
+//-   label(for="numGuests") Num Guests
+//-   input(type="number" id="numGuests" name="numGuests")
+//-   input(type="submit" value="Add Guest")
