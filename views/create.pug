@@ -1,25 +1,24 @@
 extends layout.pug
 
 block content
+    if errors
+        p The following errors were found:
+        ul
+            each error in errors
+                li #{error}
     h2 Add Guest
     form(method="post" action="/create")
         input(type="hidden" name="_csrf" value=token)
-
         label(for="firstName") First Name
-        input(type="text" id="firstName" name="firstName")
-
+        input(type="text" id="firstName" name="firstName" value=firstName)
         label(for="lastName") Last Name
-        input(type="text" id="lastName" name="lastName")
-
+        input(type="text" id="lastName" name="lastName" value=lastName)
         label(for="email") email
-        input(type="email" id="email" name="email")
-
+        input(type="email" id="email" name="email" value=email)
         label(for="password") password
         input(type="password" id="password" name="password")
-
         label(for="confirmed") Confirm password
         input(type="password" id="firstName" name="confirmedPassword")
-
         input(type="submit" value="Create User")
 
 

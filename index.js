@@ -1,5 +1,7 @@
 const express = require("express");
-
+//csurf has a token that must match in the backend,
+//its important because...
+//
 const cookieParser = require('cookie-parser');
 const csrf = require("csurf");
 
@@ -20,8 +22,33 @@ app.get("/", (req, res) => {
 app.get("/create", csrfProtection, (req, res) => {
   const token = req.csrfToken();
   res.render("create.pug", {users, token}); //the second arguement will always be in an obj
-
 });
+
+app.post("/create", csrfProtection, (req, res) => {
+  const token = req.csrfToken();
+  const errors = []; //well make an if conditional
+// for each element on the body
+const {firstName, lastName, email, password, confirmedPassword} = req.body
+if(!firstName) errors.push('Please provide a first name.')
+if(!lastName) errors.push('Please provide a last name.')
+if(!email) errors.push('Please provide an email.')
+if(!password) errors.push('Please provide a password.')
+if(errors.length > 0) {
+  res.render("create.pug", {
+    users,
+    token,
+    errors,
+    firstName,
+    lastName,
+    email
+  });
+  return
+}
+const user = {firstName, lastName, email, password}
+users.push(user)
+res.redirect("/");
+});
+
 
 app.get("/create-interesting", csrfProtection, (req, res) => {
   const token = req.csrfToken();
