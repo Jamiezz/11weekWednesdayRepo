@@ -13,8 +13,6 @@ app.use(cookieParser()); // Adding cookieParser() as application-wide middleware
 app.use(express.urlencoded());
 const csrfProtection = csrf({ cookie: true }); // creating csrfProtection middleware to use in specific routes
 
-
-
 app.get("/", (req, res) => {
   res.render("index.pug", {users}); //the second arguement will always be in an obj
 });
